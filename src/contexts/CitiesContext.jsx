@@ -58,13 +58,12 @@ function reducer(state, action) {
 function CitiesProvider({ children }) {
   const [{ cities, isLoading, currentCity, error }, dispatch] = useReducer(
     reducer,
-    initialState
+    initialState,
   );
 
   const BASE_URL =
-    "https://worldwisw-default-rtdb.europe-west1.firebasedatabase.app";
+    "https://worldwise-fdca0-default-rtdb.europe-west1.firebasedatabase.app";
 
-  // 🟢 تحميل جميع المدن
   useEffect(function () {
     async function fetchCities() {
       dispatch({ type: "loading" });
@@ -106,7 +105,7 @@ function CitiesProvider({ children }) {
         const data = await res.json();
 
         const entry = Object.entries(data).find(
-          ([key, city]) => city.id === id
+          ([key, city]) => city.id === id,
         );
 
         if (!entry)
@@ -125,7 +124,7 @@ function CitiesProvider({ children }) {
         });
       }
     },
-    [currentCity.id]
+    [currentCity.id],
   );
 
   // 🟢 إنشاء مدينة جديدة
